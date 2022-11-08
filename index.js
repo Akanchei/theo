@@ -22,11 +22,11 @@ mongoose.connect(process.env.db_url).then(()=>{
 })
 
 //middleware to create a user
-app.use("/peace/auth", authRoute)
-app.use("/peace/products", productsRoutes)
-app.use("/peace/users", usersRoutes)
-app.use("/peace/orders", orderRoute)
-app.use("/peace/cart", cartRoute)
+app.use("/philuz/auth", authRoute)
+app.use("/philuz/products", productsRoutes)
+app.use("/philuz/users", usersRoutes)
+app.use("/philuz/orders", orderRoute)
+app.use("/philuz/cart", cartRoute)
 
 app.listen(process.env.PORT || port,()=>{
     console.log(`app running on port ${port}`)
