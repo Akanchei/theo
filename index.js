@@ -28,7 +28,7 @@ app.use("/peace/users", usersRoutes)
 app.use("/peace/orders", orderRoute)
 app.use("/peace/cart", cartRoute)
 
-app.listen(port || process.env.port,()=>{
+app.listen(process.env.PORT || port,()=>{
     console.log(`app running on port ${port}`)
 })
 
