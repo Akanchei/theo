@@ -1,8 +1,4 @@
-const {
-  verifyToken,
-  verifyTokenAuth,
-  verifyTokenAdmin,
-} = require("./verifyToken");
+
 const User = require("../models/User");
 const router = require("express").Router();
 const CryptoJS = require("crypto-js");

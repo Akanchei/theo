@@ -1,10 +1,9 @@
-const { verifyToken, verifyTokenAuth, verifyTokenAdmin } = require('./verifyToken')
+
 const Product = require('../models/Products')
 const router = require('express').Router()
 const CryptoJS = require('crypto-js')
 const { protect } = require("../middleware/auth.middleware");
 const Cart = require('../models/Cart');
-
 router.post("/", /*verifyTokenAdmin,*/protect, async (req,res)=>{
     const newProduct = Product(req.body)
     try {
@@ -26,7 +25,6 @@ router.get('/:id', /*verifyTokenAuth,*/protect, async(req,res)=>{
 //get all products by category
 router.get('/',  async (req,res)=>{
     const qcategory = req.params.category
-    
     try {   
         let product;
 

@@ -1,8 +1,6 @@
 const Order = require('../models/Orders')
 const router = require('express').Router()
-
 const { protect } = require("../middleware/auth.middleware");
-
 router.post("/", /*verifyTokenAdmin,*/protect, async (req,res)=>{
     const newOrder = Order(req.body)
     try {
@@ -12,7 +10,6 @@ router.post("/", /*verifyTokenAdmin,*/protect, async (req,res)=>{
         res.status(500).json(error)
     }
 })
-
 //get a user order
 router.get('/:orderId', /*verifyTokenAuth,*/protect, async(req,res)=>{
     try {
@@ -71,7 +68,6 @@ router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
                     total: {$sum: "$sales"}
                 }
             }
-        
         ])
     } catch (error) {
         res.status(500).json(error)
