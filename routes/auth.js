@@ -23,9 +23,6 @@ router.post("/register", async (req, res) => {
 });
 //login
 router.post("/login", async (req, res) => {
-  console.log('home')
-  console.log(req.body.password)
-    console.log(req.body.email)
   try {
     const user = await User.findOne({email: req.body.email});
     !user &&
@@ -57,7 +54,6 @@ router.post("/login", async (req, res) => {
     const { password, ...others } = user._doc;
 
     res.status(200).json({ success: true, ...others, accessToken });
-    console.log(accessToken)
   } catch (error) {
     // res.json(error)
   }
