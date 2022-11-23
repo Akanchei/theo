@@ -3,7 +3,7 @@ const router = require('express').Router()
 
 const { protect } = require("../middleware/auth.middleware");
 
-router.post("/", /*verifyTokenAdmin,*/protect, async (req,res)=>{
+router.post("/", /*verifyTokenAdmin,*/ async (req,res)=>{
     const newCart = Cart(req.body)
     try {
         const savedCart = await newCart.save()
@@ -13,7 +13,7 @@ router.post("/", /*verifyTokenAdmin,*/protect, async (req,res)=>{
     }
 })
 //get a user cart
-router.get('/:userId', /*verifyTokenAuth,*/protect, async(req,res)=>{
+router.get('/:userId', /*verifyTokenAuth,*/ async(req,res)=>{
     try {
         const singleCart = await Cart.findOne({userId: req.params.userId})
         res.status(200).json(singleCart)
@@ -31,7 +31,7 @@ router.get("/",protect, async(req,res)=>{
     }
 })
 //update a product
-router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
+router.put('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
     try {
      const updatedCart = await Cart.findByIdAndUpdate(req.params.id, {
          $set: req.body
@@ -42,7 +42,7 @@ router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
     }
  })
 // delete a product
- router.delete('/:id', /*verifyTokenAdmin,*/ protect, async (req,res)=>{
+ router.delete('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
      try {
          const deletedCart = await Cart.findByIdAndDelete(req.params.id)
          res.json(200).json("Cart has been deleted")

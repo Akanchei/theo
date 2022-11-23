@@ -1,7 +1,7 @@
 const Order = require('../models/Orders')
 const router = require('express').Router()
 const { protect } = require("../middleware/auth.middleware");
-router.post("/", /*verifyTokenAdmin,*/protect, async (req,res)=>{
+router.post("/", /*verifyTokenAdmin,*/ async (req,res)=>{
     const newOrder = Order(req.body)
     try {
         const savedOrder = await newOrder.save()
@@ -11,7 +11,7 @@ router.post("/", /*verifyTokenAdmin,*/protect, async (req,res)=>{
     }
 })
 //get a user order
-router.get('/:orderId', /*verifyTokenAuth,*/protect, async(req,res)=>{
+router.get('/:orderId', /*verifyTokenAuth,*/ async(req,res)=>{
     try {
         const singleOrder = await Order.find({userId: req.params.userId})
         res.status(200).json(singleOrder)
@@ -29,7 +29,7 @@ router.get("/",protect, async(req,res)=>{
     }
 })
 //update a order
-router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
+router.put('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
     try {
      const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
          $set: req.body
@@ -40,7 +40,7 @@ router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
     }
  })
 // delete a order
- router.delete('/:id', /*verifyTokenAdmin,*/ protect, async (req,res)=>{
+ router.delete('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
      try {
          const deletedOrder = await Order.findByIdAndDelete(req.params.id)
          res.json(200).json("Cart has been deleted")
@@ -49,7 +49,7 @@ router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
      }
  })
  //monthly income
- router.get("/imcome", protect, async(req,re)=>{
+ router.get("/imcome", async(req,re)=>{
     const date = new Date()
     const lastMonth = new Date(date.setMonth(date.getMonth()-1));
     const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth()-1));
