@@ -31,7 +31,7 @@ router.get("/",protect, async(req,res)=>{
     }
 })
 //update a product
-router.put('/:id', /*verifyTokenAdmin,*/protect async (req,res)=>{
+router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
     try {
      const updatedCart = await Cart.findByIdAndUpdate(req.params.id, {
          $set: req.body
