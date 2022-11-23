@@ -28,7 +28,7 @@ router.get("/stats", /*verifyTokenAdmin protect,*/ async (req, res) => {
   }
 });
 //get a particular user
-router.get("/:id", /*verifyTokenAdmin */protect, async (req, res) => {
+router.get("/:id", /*verifyTokenAdmin */ async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     const { password, ...others } = user._doc;
@@ -38,7 +38,7 @@ router.get("/:id", /*verifyTokenAdmin */protect, async (req, res) => {
   }
 });
 //get all users
-router.get("/", /*verifyTokenAdmin,*/protect, async (req, res) => {
+router.get("/", /*verifyTokenAdmin,*/ async (req, res) => {
   const query = req.query.new;
 
   try {
@@ -69,7 +69,7 @@ router.patch("/:id", /*verifyTokenAuth,**/ async (req, res) => {
   }
 });
 
-router.delete("/:id", /*verifyTokenAuth,*/protect, async (req, res) => {
+router.delete("/:id", /*verifyTokenAuth,*/ async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     //res.json(200).json("user has been deleted");
