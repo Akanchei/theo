@@ -4,7 +4,7 @@ const router = require('express').Router()
 const CryptoJS = require('crypto-js')
 const { protect } = require("../middleware/auth.middleware");
 const Cart = require('../models/Cart');
-router.post("/", /*verifyTokenAdmin,protect,*/ async (req,res)=>{
+router.post("/", /*verifyTokenAdmin,protect,*/protect, async (req,res)=>{
     const newProduct = Product(req.body)
     try {
         const savedProduct = await newProduct.save()
@@ -14,7 +14,7 @@ router.post("/", /*verifyTokenAdmin,protect,*/ async (req,res)=>{
     }
 })
 //get a single product
-router.get('/:id', /*verifyTokenAuth,*/ async(req,res)=>{
+router.get('/:id', /*verifyTokenAuth,*/protect, async(req,res)=>{
     try {
         const singleProduct = await Product.findById(req.params.id)
         res.status(200).json(singleProduct)
@@ -53,7 +53,7 @@ router.get('/', async(req,res)=>{
 })
 
 //update a product
-router.put('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
+router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
     try {
      const updatedProduct = await Product.findByIdAndUpdate(req.params.id, {
          $set: req.body

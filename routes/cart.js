@@ -31,7 +31,7 @@ router.get("/",protect, async(req,res)=>{
     }
 })
 //update a product
-router.put('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
+router.put('/:id', /*verifyTokenAdmin,*/protect async (req,res)=>{
     try {
      const updatedCart = await Cart.findByIdAndUpdate(req.params.id, {
          $set: req.body
@@ -42,7 +42,7 @@ router.put('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
     }
  })
 // delete a product
- router.delete('/:id', /*verifyTokenAdmin,*/ async (req,res)=>{
+ router.delete('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
      try {
          const deletedCart = await Cart.findByIdAndDelete(req.params.id)
          res.json(200).json("Cart has been deleted")
