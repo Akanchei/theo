@@ -29,7 +29,7 @@ router.get("/",protect, async(req,res)=>{
     }
 })
 //update a order
-router.put('/:id', /*verifyTokenAdmin,*/protected, async (req,res)=>{
+router.put('/:id', /*verifyTokenAdmin,*/protect, async (req,res)=>{
     try {
      const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
          $set: req.body
